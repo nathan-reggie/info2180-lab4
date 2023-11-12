@@ -63,6 +63,10 @@ $superheroes = [
   ], 
 ];
 
+if($_SERVER['REQUEST_METHOD']=="GET") {
+    header("Access-Control-Allow-Origin: *");
+    //echo($superheroes);
+}
 ?>
 
 <ul>
