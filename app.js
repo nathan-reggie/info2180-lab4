@@ -1,16 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event)=>{
 
-    searchButton = document.querySelector(".search")
-
-    searchButton.addEventListener("click", async (event)=>{
-        event.preventDefault()
-        const result = await fetch("http://localhost:8888/info2180-lab4/superheroes.php", {
-            method: "GET"
-        })
-        const data = await result.text()
-        alert(data)
-    })
-
     const form = document.querySelector("#form")
 
     form.addEventListener("submit", async (event)=>{
@@ -20,9 +9,7 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         const formData = new FormData(event.target)
         const name = formData.get("name")
         const result = await fetch(`http://localhost:8888/info2180-lab4/superheroes.php?name=${name}`)
-        console.log(name)
         const data = await result.json()
-        console.log(data, typeof(data))
         if("error" in data){
             resultcont.innerHTML = "SUPERHERO NOT FOUND"
         }

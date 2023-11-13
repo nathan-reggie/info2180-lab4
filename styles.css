@@ -1,0 +1,13 @@
+.titlecard{
+    display: flex;
+    background-color: #1a68c7;
+    padding: 15px;
+    justify-content: center;
+}
+
+.hero-form{
+    display:flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 10px;
+}
