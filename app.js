@@ -23,7 +23,10 @@ document.addEventListener("DOMContentLoaded", (event)=>{
         console.log(name)
         const data = await result.json()
         console.log(data, typeof(data))
-        if(name.length == 0){
+        if("error" in data){
+            resultcont.innerHTML = "SUPERHERO NOT FOUND"
+        }
+        else if(name.length == 0){
             Object.keys(data).forEach(key =>{
                 let listElement = document.createElement("li")
                 listElement.innerHTML = data[key]["alias"]

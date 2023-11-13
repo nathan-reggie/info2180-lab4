@@ -65,59 +65,24 @@ $superheroes = [
   ], 
 ];
 
-/*if($_SERVER['REQUEST_METHOD']=="GET") {
-    $completed = FALSE;
-    if(isset($_GET["name"])){
-        $name = $_GET["name"];
-        foreach ($superheroes as $superhero){
-            if((strtolower($superhero["name"]) == strtolower($name)) or (strtolower($superhero["name"]) == strtolower($name))){
-                echo json_encode($superhero);
-                $completed = TRUE;
-                break;
-            }
-        }
-    }
-    if($completed = FALSE){
-        echo(json_encode($superheroes));
-    }
-}*/
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    /*if (isset($_GET['name'])) {
-        $query = trim(strip_tags($_GET['name']));
-
-        if (strlen($query) === 0) {
+    if (isset($_GET["name"])) {
+        $name = $_GET["name"];
+        if($name === ""){
             echo json_encode($superheroes);
-            return;
+            exit();
         }
-
-        $queryResult = array_filter($superheroes, function ($val) use ($query) {
-            return strtolower($val['name']) === strtolower($query) || strtolower($val['alias']) === strtolower($query);
-        });
-
-        echo json_encode(array_values($queryResult));
-    } else {
-        // Return all superheroes
-        echo json_encode($superheroes);
-    }
-} else {
-    http_response_code(405);
-    echo "Method Not Allowed";
-}*/
-if (isset($_GET["name"])) {
-    $name = $_GET["name"];
-    if($name === ""){
-        echo json_encode($superheroes);
-        exit();
-    }
-    else{
-        foreach ($superheroes as $superhero) {
-            if((strtolower($superhero["name"])) === (strtolower($name)) or (strtolower($superhero["alias"]) === strtolower($name))){
-                echo json_encode($superhero);
-                exit();
+        else{
+            foreach ($superheroes as $superhero) {
+                if((strtolower($superhero["name"])) === (strtolower($name)) or (strtolower($superhero["alias"]) === strtolower($name))){
+                    echo json_encode($superhero);
+                    exit();
+                }
             }
+            echo json_encode(["error"=>"Method Not Allowed"]);
+            exit();
         }
     }
-}
 
 }
 ?>
