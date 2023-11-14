@@ -67,7 +67,7 @@ $superheroes = [
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET["name"])) {
-        $name = $_GET["name"];
+        $name = strip_tags($_GET["name"]);
         if($name === ""){
             echo json_encode($superheroes);
             exit();
